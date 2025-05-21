@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Weather App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+    .weather-container {
+      display: flex;
+      width: 600px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .left-section, .right-section {
+      padding: 20px;
+      flex: 1;
+    }
+    .right-section input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+    }
+    .weather-details {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="weather-container">
+  <div class="left-section">
+    <h2>Weather App</h2>
+    <p>Type a country name to view its weather details.</p>
+  </div>
+
+  <div class="right-section">
+    <input type="text" id="countryInput" placeholder="Enter country name..." />
+    <div class="weather-details" id="weatherDetails">
+      <!-- Weather data will be displayed here -->
+    </div>
+  </div>
+</div>
+
+<script>
+  const weatherData = {
+    "India": {
+      temperature: "34°C",
+      condition: "Sunny",
+      humidity: "40%"
+    },
+    "Canada": {
+      temperature: "12°C",
+      condition: "Cloudy",
+      humidity: "65%"
+    },
+    "USA": {
+      temperature: "22°C",
+      condition: "Rainy",
+      humidity: "80%"
+    },
+    "Japan": {
+      temperature: "18°C",
+      condition: "Windy",
+      humidity: "50%"
+    }
+  };
+
+  document.getElementById('countryInput').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+      const input = event.target.value.trim();
+      const data = weatherData[input];
+
+      const weatherDetails = document.getElementById('weatherDetails');
+      if (data) {
+        weatherDetails.innerHTML = `
+          <h3>Weather in ${input}</h3>
+          <p><strong>Temperature:</strong> ${data.temperature}</p>
+          <p><strong>Condition:</strong> ${data.condition}</p>
+          <p><strong>Humidity:</strong> ${data.humidity}</p>
+        `;
+      } else {
+        weatherDetails.innerHTML = `<p style="color:red;">Weather data not found for "${input}".</p>`;
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
