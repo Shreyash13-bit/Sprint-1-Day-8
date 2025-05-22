@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dynamic List Creation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+    }
+
+    input[type="text"] {
+      padding: 8px;
+      font-size: 14px;
+      width: 250px;
+      margin-right: 10px;
+    }
+
+    button {
+      padding: 8px 16px;
+      font-size: 14px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    ul {
+      margin-top: 20px;
+      padding-left: 20px;
+    }
+
+    li {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Dynamic List Creation</h1>
+
+  <input type="text" id="itemInput" placeholder="Enter a list item">
+  <button id="addItemBtn">Add Item</button>
+
+  <ul id="itemList"></ul>
+
+  <script>
+    const input = document.getElementById("itemInput");
+    const addButton = document.getElementById("addItemBtn");
+    const itemList = document.getElementById("itemList");
+
+    addButton.addEventListener("click", () => {
+      const value = input.value.trim();
+
+      if (value !== "") {
+        const li = document.createElement("li");
+        li.textContent = value;
+        itemList.appendChild(li);
+        input.value = "";
+        input.focus();
+      }
+    });
+  </script>
+
+</body>
+</html>
